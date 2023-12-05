@@ -28,6 +28,8 @@ urlpatterns = [
 
     re_path(r'^simulation_close_url/$', views.simulation_close_url.as_view(), name="simulation_close_url"),
     re_path(r'^simulation_close_results_url/$', views.simulation_close_results_url.as_view(), name="simulation_close_results_url"),
+    re_path(r'^simulation_close_results_url_1/$', views.simulation_close_results_url_1.as_view(), name="simulation_close_results_url_1"),
+    re_path(r'^simulation_close_results_url_2/$', views.simulation_close_results_url_2.as_view(), name="simulation_close_results_url_2"),
 
     re_path(r'^buttons/$', views.ButtonsView.as_view(), name="buttons_url"),
 

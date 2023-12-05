@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Tables {% endblock %}
+
+
+{% block css %}
+<!-- Custom styles for this page -->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block container_fluid %}
+
+<script>
+
+    // function send() {
+    
+    //     document.getElementById( 'jb' ).value = '100';
+    //     setTimeout(function() {
+    //     show("test 2");
+    //     }, 3000);
+        
+    //     alert("시뮬레이션 진행 중");
+    //     document.getElementById("contents").submit();
+    //     }
+    
+    function startProgress() {
+          const progressBar = document.getElementById('progressBar');
+          let currentValue = 0;
+          const duration = 1000; // 10초(밀리초)
+    
+          const interval = setInterval(() => {
+            currentValue += 1;
+            progressBar.value = currentValue;
+    
+            if (currentValue >= 100) {
+              clearInterval(interval);
+              triggerAlarm();
+            }
+          }, duration / 100);
+        }
+    
+    function triggerAlarm() {
+        // 여기에 알람을 울리는 코드를 넣으세요 (예: alert 사용)
+        alert('학습완료');
+        document.getElementById("contents").submit();
+    }
+
+    function triggerAlarm1() {
+        // 여기에 알람을 울리는 코드를 넣으세요 (예: alert 사용)
+        alert('폰트저장 완료');
+        document.getElementById("contents1").submit();
+    }
+    
+</script>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">폰트 학습 및 생성 결과</h1>
+
+    <div class="card shadow mb-4">
+        <!-- <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div> -->
+        <div class="card-body">
+            <form id="contents" name="contents" method="get" action="{% url 'users:simulation_close_results_url' %}"></form>
+            {% csrf_token %}
+            <p>
+                <label for="schoollevel">추가 학습 횟수 : </label>
+                <select id="mySelect" name="schoollevel" onchange="showSelectedValue()">
+                    <option selected disabled>선택해주세요</option>
+                    <option value="시나리오1">1회</option>
+                    <option value="시나리오2">2회</option>
+                    <option value="시나리오3">3회</option>
+                </select>
+            </p>
+            <p>
+                <progress id="progressBar" value="0" max="100" id="jb"></progress>
+            </p>
+            <p>
+                <button type="button" onclick="startProgress();">추가 학습 시작</button>
+            </p>
+            </form>
+
+            <form id="contents1" name="contents1" method="get" action="{% url 'users:simulation_close_url' %}">
+                <p>
+                    <button type="button" onclick="triggerAlarm1();">학습 글꼴 내려받기</button>
+                </p>
+            </form>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>  
+                            <th> 1</th>
+                            <th> 2</th>
+                            <th> 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>
+                            <img src="{% static '/resource/img/Firstmodel_png/값.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/같.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/곬.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/곶.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/깎.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/넋.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/늪.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/닫.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/닭.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/닻.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/됩.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/뗌.png' %}", width = "250" alt="tt">
+                            </td>
+                            <td>
+                            <img src="{% static '/resource/img/Firstmodel_png/략.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/몃.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/밟.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/볘.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/뺐.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/뽈.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/솩.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/쐐.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/앉.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/않.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/얘.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/얾.png' %}", width = "250" alt="tt">
+                            </td>
+                            <td>
+                            <img src="{% static '/resource/img/Firstmodel_png/엌.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/옳.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/읊.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/죡.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/쮜.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/춰.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/츄.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/퀭.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/틔.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/핀.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/핥.png' %}", width = "250" alt="tt">
+                            <img src="{% static '/resource/img/Firstmodel_png/훟.png' %}", width = "250" alt="tt">
+                            </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_body %}
+<!-- Data Tables -->
+<script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

@@ -189,54 +189,39 @@ class simulation_count_results_url(APIView):
         return Response({'status': 200})
 
 class simulation_close_url(APIView):
+    def get(self, request):
+        
+        return render(request, 'theme/simulation_close_url.html',{})
+
+class simulation_close_results_url(APIView):
+    
     def get(self, request, *args, **kwargs):
-        return render(request, "theme/simulation_close_url.html", {'results':results})
+
+        return render(request, "theme/simulation_close_results_url.html")
 
     def post(self, request, *args, **kwargs):
 
         return Response({'status': 200})
 
-class simulation_close_results_url(APIView):
+class simulation_close_results_url_1(APIView):
     
     def get(self, request, *args, **kwargs):
-        schoollevel = request.GET['schoollevel']
-        prelevel = request.GET['prelevel']
-        start_num = request.GET['start_num']
+
+        return render(request, "theme/simulation_close_results_url_1.html")
+
+    def post(self, request, *args, **kwargs):
+
+        return Response({'status': 200})
         
-        end_num = int(start_num) + 9
-        end_num = "년" + str(end_num)
-        start_num = "년" + str(start_num)
-        
-        df = pd.read_csv("./예측인원.csv",encoding="utf-8-sig")
-        data1 = df[(df["학교유형"]==schoollevel)&(df["예측유형"]==prelevel)]
-        data2 = data1.loc[:,"학교명"]
-        data3 = data1.loc[:,start_num:end_num]
-        data4 = data1.loc[:,"SIG_KOR_NM"]
-        data5 = data1.loc[:,"SIG_CD"]
+class simulation_close_results_url_2(APIView):
+    
+    def get(self, request, *args, **kwargs):
 
-        data = pd.concat([data2,data3,data4,data5],axis=1)
+        return render(request, "theme/simulation_close_results_url_2.html")
 
-        results = []
+    def post(self, request, *args, **kwargs):
 
-        for i in range(len(data3.columns)):
-            ff = data[data[data3.columns[i]]==0]["학교명"].count()
-            results.append(ff)        
-
-        data = pd.DataFrame(results).T
-
-        ff = []
-        
-        for i in range(len(data3.columns)):
-            ff.append("필요교원수"+f"{i}")
-        
-
-        data.columns = ff
-
-        json_records = data.to_json(orient ='records')
-        data = json.loads(json_records)
-        context = {'df': data}
-        
-        return render(request, "theme/simulation_close_results_url.html", context)
+        return Response({'status': 200})
 
 
 class IndexView(APIView):
